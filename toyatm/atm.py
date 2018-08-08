@@ -28,9 +28,9 @@ class ATM:
         self.conn = db_api_v2_connection
         self._database_setup()
 
-    #####################################
-    ## Database initialization methods ##
-    #####################################
+    #############################################
+    ## Private database initialization methods ##
+    #############################################
 
     def _database_setup(self):
         self._create_database_if_not_exists()
