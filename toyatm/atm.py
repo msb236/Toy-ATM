@@ -44,9 +44,9 @@ class ATM:
         cur.execute(self._create_table_sql)
         cur.close()
 
-    ###################
-    ## Public method ##
-    ###################
+    ####################
+    ## Public methods ##
+    ####################
 
     @property
     def balance(self):
