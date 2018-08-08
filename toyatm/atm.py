@@ -44,9 +44,9 @@ class ATM:
         cur.execute(self._create_table_sql)
         cur.close()
 
-    ####################
-    ## Publish method ##
-    ####################
+    ###################
+    ## Public method ##
+    ###################
 
     @property
     def balance(self):
@@ -77,8 +77,11 @@ class ATM:
             conn.commit()
             cur.close()
             
-        
-# decorator to report account balances after an action
+################
+## DECORATORS ##
+################
+
+# report account balances after an action
 def balance_check(fn):
     def add_balance_check(self, *args, **kwargs):
         results = fn(self, *args, **kwargs)
