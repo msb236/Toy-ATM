@@ -28,6 +28,10 @@ class ATM:
         self.conn = db_api_v2_connection
         self._database_setup()
 
+    #####################################
+    ## Database initialization methods ##
+    #####################################
+
     def _database_setup(self):
         self._create_database_if_not_exists()
         self._create_transactions_table()
@@ -39,6 +43,10 @@ class ATM:
         cur = self.conn.cursor()
         cur.execute(self._create_table_sql)
         cur.close()
+
+    ####################
+    ## Publish method ##
+    ####################
 
     @property
     def balance(self):
@@ -70,6 +78,7 @@ class ATM:
             cur.close()
             
         
+# decorator to report account balances after an action
 def balance_check(fn):
     def add_balance_check(self, *args, **kwargs):
         results = fn(self, *args, **kwargs)
