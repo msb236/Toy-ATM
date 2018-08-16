@@ -2,17 +2,6 @@ import os
 import sqlite3
 import errno
 
-################
-## DECORATORS ##
-################
-
-# report account balances after an action
-def report_balance(fn):
-    def add_balance_check(self, *args, **kwargs):
-        results = fn(self, *args, **kwargs)
-        print('Account balance: {:,}'.format(self.balance))
-        return results
-    return add_balance_check
 
 #########################
 ## APPLICATION CLASSES ##
@@ -67,18 +56,12 @@ class AMS:
         cur.close()
         return amount
 
-    @report_balance
-    def check_balance(self):
-        pass
-
-    @report_balance
     def make_deposit(self, amount):
         cur = self.conn.cursor()
         cur.execute(self._make_deposit_sql, (amount,))
         self.conn.commit()
         cur.close()
 
-    @report_balance
     def make_withdraw(self, amount):
         if amount > self.balance:
             print('Insufficient funds')
