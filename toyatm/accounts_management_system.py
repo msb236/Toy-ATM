@@ -88,6 +88,9 @@ class AMS:
             self.conn.commit()
             cur.close()
             
+    def close(self):
+        self.conn.close()
+
 class AMSSQLite(AMS):
 
     _application_relative_dir = 'Toy_ATM'
